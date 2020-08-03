@@ -753,6 +753,8 @@ esac
 
 #DEBHELPER#
 
+exit 0
+
 #Kaisen Linux configs scripts
 #/etc/default/grub config file
 
@@ -763,6 +765,9 @@ GRUB_DISTRIBUTOR=Kaisen
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
 GRUB_CMDLINE_LINUX=""
 EOF
+
+#Copy /usr/share/kaisen-grub/grub-16x9.png
+mv /etc/grub.d/grub-16x9.png /boot/grub
 
 #Update-grub for applying modifications. Quiet process.
 
