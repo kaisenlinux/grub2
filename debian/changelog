@@ -1,3 +1,55 @@
+grub2 (2.04-12kaisen1) kaisen-packages; urgency=medium
+
+  * Import new upstream release
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisen-linux.org>  Sun, 03 Jan 2021 22:35:19 +0200
+
+grub2 (2.04-12) unstable; urgency=medium
+
+  * Cherry-pick from upstream:
+    - mdraid1x_linux: Fix gcc10 error -Werror=array-bounds
+    - zfs: Fix gcc10 error -Werror=zero-length-bounds
+  * Build with GCC 10 (closes: #978515).
+
+ -- Colin Watson <cjwatson@debian.org>  Mon, 28 Dec 2020 22:33:23 +0000
+
+grub2 (2.04-11) unstable; urgency=medium
+
+  * grub-install: Fix backup restoration on i386 (closes: #976671).
+
+ -- Colin Watson <cjwatson@debian.org>  Sun, 06 Dec 2020 18:29:51 +0000
+
+grub2 (2.04-10) unstable; urgency=medium
+
+  [ Ian Campbell ]
+  * Remove myself from uploaders.
+
+  [ Colin Watson ]
+  * When upgrading grub-pc noninteractively, bail out if grub-install fails.
+    It's better to fail the upgrade than to produce a possibly-unbootable
+    system.
+  * Explicitly check whether the target device exists before running
+    grub-install, since grub-install copies modules to /boot/grub/ before
+    installing the core image, and the new modules might be incompatible
+    with the old core image (closes: #966575).
+  * Cherry-pick from upstream:
+    - tftp: Roll-over block counter to prevent data packets timeouts
+      (LP: #1892290).
+
+  [ Dimitri John Ledkov ]
+  * grub-install: Add backup and restore.
+  * Don't call grub-install on fresh install of grub-pc.  It's the job of
+    installers to do that after a fresh install.
+
+ -- Colin Watson <cjwatson@debian.org>  Sun, 08 Nov 2020 16:26:08 +0000
+
+grub2 (2.04-9+kaisen2) kaisen-testing; urgency=medium
+
+  * Readding kaisen-grub-configuration
+  * Remove kaisen-grub-configuration postinst file
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisen-linux.org>  Mon, 05 Aug 2020 00:12:37 +0200
+
 grub2 (2.04-9+kaisen1) kaisen-testing; urgency=high
 
   * Fix Boothole vulnerability
