@@ -568,8 +568,8 @@ case "$1" in
             db_go
             db_get "$question"
             failed_devices=
-            for i in `echo $RET | sed -e 's/, / /g'` ; do
-              real_device="$(readlink -f "$i")"
+            for i in $RET; do
+              real_device="$(readlink -f "${i%,}")"
               if [ ! -e "$real_device" ]; then
                 echo "$real_device does not exist, so cannot grub-install to it!" >&2
                 failed_devices="$failed_devices $real_device"
@@ -610,7 +610,8 @@ case "$1" in
                 else
                   echo "You must correct your GRUB install devices before proceeding:" >&2
                   echo >&2
-                  echo "  dpkg-reconfigure grub-pc" >&2
+                  echo "  DEBIAN_FRONTEND=dialog dpkg --configure grub-pc" >&2
+                  echo "  dpkg --configure -a" >&2
                   exit 1 # noninteractive
                 fi
               else
@@ -629,7 +630,8 @@ case "$1" in
                 else
                   echo "You must correct your GRUB install devices before proceeding:" >&2
                   echo >&2
-                  echo "  dpkg-reconfigure grub-pc" >&2
+                  echo "  DEBIAN_FRONTEND=dialog dpkg --configure grub-pc" >&2
+                  echo "  dpkg --configure -a" >&2
                   exit 1 # noninteractive
                 fi
               fi
@@ -659,7 +661,8 @@ case "$1" in
                 else
                   echo "You must correct your GRUB install devices before proceeding:" >&2
                   echo >&2
-                  echo "  dpkg-reconfigure grub-pc" >&2
+                  echo "  DEBIAN_FRONTEND=dialog dpkg --configure grub-pc" >&2
+                  echo "  dpkg --configure -a" >&2
                   exit 1 # noninteractive
                 fi
               fi

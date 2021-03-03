@@ -972,14 +972,6 @@ module = {
 };
 
 module = {
-  name = hwmatch;
-  i386_pc = commands/i386/pc/hwmatch.c;
-  enable = i386_pc;
-  cflags = '$(CFLAGS_POSIX) $(CFLAGS_GNULIB)';
-  cppflags = '$(CPPFLAGS_POSIX) $(CPPFLAGS_GNULIB)';
-};
-
-module = {
   name = keystatus;
   common = commands/keystatus.c;
 };
@@ -1853,13 +1845,6 @@ module = {
 module = {
   name = appleldr;
   common = loader/efi/appleloader.c;
-  enable = i386_efi;
-  enable = x86_64_efi;
-};
-
-module = {
-  name = linuxefi;
-  efi = loader/i386/efi/linux.c;
   enable = i386_efi;
   enable = x86_64_efi;
 };

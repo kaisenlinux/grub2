@@ -36,7 +36,6 @@
 #include <grub/lib/cmdline.h>
 #include <grub/linux.h>
 #include <grub/machine/kernel.h>
-#include <grub/safemath.h>
 
 GRUB_MOD_LICENSE ("GPLv3+");
 
@@ -77,8 +76,6 @@ static grub_size_t maximal_cmdline_size;
 static struct linux_kernel_params linux_params;
 static char *linux_cmdline;
 #ifdef GRUB_MACHINE_EFI
-static int using_linuxefi;
-static grub_command_t initrdefi_cmd;
 static grub_efi_uintn_t efi_mmap_size;
 #else
 static const grub_size_t efi_mmap_size = 0;
@@ -183,8 +180,9 @@ allocate_pages (grub_size_t prot_size, grub_size_t *align,
 	for (; err && *align + 1 > min_align; (*align)--)
 	  {
 	    grub_errno = GRUB_ERR_NONE;
-	    err = grub_relocator_alloc_chunk_align (relocator, &ch, 0x1000000,
-						    UP_TO_TOP32 (prot_size),
+	    err = grub_relocator_alloc_chunk_align (relocator, &ch,
+						    0x1000000,
+						    0xffffffff & ~prot_size,
 						    prot_size, 1 << *align,
 						    GRUB_RELOCATOR_PREFERENCE_LOW,
 						    1);
@@ -549,13 +547,9 @@ grub_linux_boot (void)
 
   {
     grub_relocator_chunk_t ch;
-    grub_size_t sz;
-
-    if (grub_add (ctx.real_size, efi_mmap_size, &sz))
-      return GRUB_ERR_OUT_OF_RANGE;
-
     err = grub_relocator_alloc_chunk_addr (relocator, &ch,
-					   ctx.real_mode_target, sz);
+					   ctx.real_mode_target,
+					   (ctx.real_size + efi_mmap_size));
     if (err)
      return err;
     real_mode_mem = get_virtual_current_address (ch);
@@ -656,39 +650,6 @@ grub_cmd_linux (grub_command_t cmd __attribute__ ((unused)),
   grub_uint64_t preferred_address = GRUB_LINUX_BZIMAGE_ADDR;
 
   grub_dl_ref (my_mod);
-
-#ifdef GRUB_MACHINE_EFI
-  using_linuxefi = 0;
-  if (grub_efi_secure_boot ())
-    {
-      /* linuxefi requires a successful signature check and then hand over
-	 to the kernel without calling ExitBootServices. */
-      grub_dl_t mod;
-      grub_command_t linuxefi_cmd;
-
-      grub_dprintf ("linux", "Secure Boot enabled: trying linuxefi\n");
-
-      mod = grub_dl_load ("linuxefi");
-      if (mod)
-	{
-	  grub_dl_ref (mod);
-	  linuxefi_cmd = grub_command_find ("linuxefi");
-	  initrdefi_cmd = grub_command_find ("initrdefi");
-	  if (linuxefi_cmd && initrdefi_cmd)
-	    {
-	      (linuxefi_cmd->func) (linuxefi_cmd, argc, argv);
-	      if (grub_errno == GRUB_ERR_NONE)
-		{
-		  grub_dprintf ("linux", "Handing off to linuxefi\n");
-		  using_linuxefi = 1;
-		  return GRUB_ERR_NONE;
-		}
-	      grub_dprintf ("linux", "linuxefi failed (%d)\n", grub_errno);
-	      goto fail;
-	    }
-	}
-    }
-#endif
 
   if (argc == 0)
     {
@@ -1074,12 +1035,6 @@ grub_cmd_initrd (grub_command_t cmd __attribute__ ((unused)),
   grub_addr_t addr;
   grub_err_t err;
   struct grub_linux_initrd_context initrd_ctx = { 0, 0, 0 };
-
-#ifdef GRUB_MACHINE_EFI
-  /* If we're using linuxefi, just forward to initrdefi.  */
-  if (using_linuxefi && initrdefi_cmd)
-    return (initrdefi_cmd->func) (initrdefi_cmd, argc, argv);
-#endif
 
   if (argc == 0)
     {
