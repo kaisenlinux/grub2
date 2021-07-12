@@ -35,10 +35,10 @@ Build-Depends: debhelper-compat (= 10),
  libefiboot-dev [i386 amd64 ia64 x32 armel armhf arm64],
  libefivar-dev [i386 amd64 ia64 x32 armel armhf arm64],
 Build-Conflicts: autoconf2.13, libzfs-dev, libnvpair-dev
-Standards-Version: 3.9.6
+Standards-Version: 4.5.1
 Homepage: https://www.gnu.org/software/grub/
-Vcs-Git: https://salsa.debian.org/grub-team/grub.git
-Vcs-Browser: https://salsa.debian.org/grub-team/grub
+Vcs-Git: https://gitlab.com/kaisenlinux/packages/grub2.git
+Vcs-Browser: https://gitlab.com/kaisenlinux/packages/grub2
 Rules-Requires-Root: no
 
 Package: grub2
@@ -247,7 +247,7 @@ Description: GRand Unified Bootloader, version 2 (Coreboot version)
 
 Package: grub-efi-ia32-bin
 Architecture: any-i386 any-amd64
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
 Recommends: grub-efi-ia32-signed [i386], efibootmgr [linux-any]
 Replaces: grub2 (<< ${source:Version}), grub-common (<= 1.97~beta2-1), grub-efi, grub-efi-ia32 (<< 1.99-1)
 Multi-Arch: foreign
@@ -355,15 +355,9 @@ Description: GRand Unified Bootloader, version 2 (EFI-AMD64 version)
  interface has been activated).  Installing this package indicates that this
  version of GRUB should be the active boot loader.
 
-Package: grub-efi-amd64-signed-template
-Architecture: amd64
-Description: GRand Unified Bootloader, version 2 (EFI-AMD64 signing template)
- This package contains template files for grub-efi-amd64-signed.
- This is only needed for Secure Boot signing.
-
 Package: grub-efi-ia64-bin
 Architecture: any-ia64
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
 Multi-Arch: foreign
 XB-Efi-Vendor: ${efi:Vendor}
 Description: GRand Unified Bootloader, version 2 (IA64 modules)
@@ -412,7 +406,7 @@ Description: GRand Unified Bootloader, version 2 (IA64 version)
 
 Package: grub-efi-arm-bin
 Architecture: any-arm
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
 Recommends: efibootmgr [linux-any]
 Multi-Arch: foreign
 XB-Efi-Vendor: ${efi:Vendor}
