@@ -1,9 +1,9 @@
 Source: grub2
 Section: admin
 Priority: optional
-XSBC-Original-Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
-Maintainer: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
-Build-Depends: debhelper-compat (= 10),
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Uploaders: Felix Zielcke <fzielcke@z-51.de>, Jordi Mallach <jordi@debian.org>, Colin Watson <cjwatson@debian.org>, Steve McIntyre <93sam@debian.org>, Julian Andres Klode <jak@debian.org>
+Build-Depends: debhelper-compat (= 13),
  patchutils,
  python3,
  flex,
@@ -35,10 +35,10 @@ Build-Depends: debhelper-compat (= 10),
  libefiboot-dev [i386 amd64 ia64 x32 armel armhf arm64],
  libefivar-dev [i386 amd64 ia64 x32 armel armhf arm64],
 Build-Conflicts: autoconf2.13, libzfs-dev, libnvpair-dev
-Standards-Version: 4.5.1
+Standards-Version: 3.9.6
 Homepage: https://www.gnu.org/software/grub/
-Vcs-Git: https://gitlab.com/kaisenlinux/packages/grub2.git
-Vcs-Browser: https://gitlab.com/kaisenlinux/packages/grub2
+Vcs-Git: https://salsa.debian.org/grub-team/grub.git
+Vcs-Browser: https://salsa.debian.org/grub-team/grub
 Rules-Requires-Root: no
 
 Package: grub2
@@ -300,6 +300,13 @@ Description: GRand Unified Bootloader, version 2 (EFI-IA32 version)
  interface has been activated).  Installing this package indicates that this
  version of GRUB should be the active boot loader.
 
+Package: grub-efi-ia32-signed-template
+Architecture: i386
+Depends: ${misc:Depends}
+Description: GRand Unified Bootloader, version 2 (EFI-IA32 signing template)
+ This package contains template files for grub-efi-ia32-signed.
+ This is only needed for Secure Boot signing.
+
 Package: grub-efi-amd64-bin
 Architecture: i386 kopensolaris-i386 any-amd64
 Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
@@ -355,9 +362,16 @@ Description: GRand Unified Bootloader, version 2 (EFI-AMD64 version)
  interface has been activated).  Installing this package indicates that this
  version of GRUB should be the active boot loader.
 
+Package: grub-efi-amd64-signed-template
+Architecture: amd64
+Depends: ${misc:Depends}
+Description: GRand Unified Bootloader, version 2 (EFI-AMD64 signing template)
+ This package contains template files for grub-efi-amd64-signed.
+ This is only needed for Secure Boot signing.
+
 Package: grub-efi-ia64-bin
 Architecture: any-ia64
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
 Multi-Arch: foreign
 XB-Efi-Vendor: ${efi:Vendor}
 Description: GRand Unified Bootloader, version 2 (IA64 modules)
@@ -505,6 +519,13 @@ Description: GRand Unified Bootloader, version 2 (ARM64 UEFI version)
  use on ARM64 systems with UEFI.  Installing this package indicates that
  this version of GRUB should be the active boot loader.
 
+Package: grub-efi-arm64-signed-template
+Architecture: arm64
+Depends: ${misc:Depends}
+Description: GRand Unified Bootloader, version 2 (ARM64 UEFI signing template)
+ This package contains template files for grub-efi-arm64-signed.
+ This is only needed for Secure Boot signing.
+
 Package: grub-ieee1275-bin
 Architecture: any-i386 any-amd64 any-powerpc any-ppc64 any-ppc64el any-sparc any-sparc64
 Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
@@ -578,7 +599,7 @@ Description: GRUB firmware image for QEMU
 
 Package: grub-uboot-bin
 Architecture: any-arm
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
 Multi-Arch: foreign
 Description: GRand Unified Bootloader, version 2 (ARM U-Boot modules)
  GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
