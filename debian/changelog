@@ -1,3 +1,25 @@
+grub2 (2.06-4kaisen) kaisen-packages; urgency=medium
+
+  * Import Debian patches and fixs
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Wed, 28 Sep 2022 11:30:03 +0100
+
+grub2 (2.06-4) unstable; urgency=high
+
+  [ Steve McIntyre ]
+  * Updated the 2.06-3 changelog to mention closure of CVE-2022-28736
+  * Add a commented-out GRUB_DISABLE_OS_PROBER section to
+    /etc/default/grub to make it easier for users to turn os-prober
+    back on if they want it. Closes: #1013797, #1009336
+  * Add smbios to the signed grub efi images. Closes: #1008106
+  * Add serial to the signed grub efi images. Closes: #1013962
+  * grub2-common: Remove dependency on install-info, it's apparently
+    not needed. Closes: #1013698
+  * Don't strip Xen binaries so they work again. Closes: #1017944.
+    Thanks to Valentin Kleibel for the patch.
+
+ -- Steve McIntyre <93sam@debian.org>  Wed, 14 Sep 2022 22:35:49 +0100
+
 grub2 (2.06-3kaisen) kaisen-packages; urgency=medium
 
   * Import GRUB 2.06
