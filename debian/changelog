@@ -1,3 +1,10 @@
+grub2 (2.06-4.1kaisen) kaisen-packages; urgency=medium
+
+  * Remove the deactivation of os-prober in the /etc/default/grub
+    to fix the error of the failed update-grub at the installation with LUKS
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Tue, 04 Oct 2022 18:32:47 +0100
+
 grub2 (2.06-4kaisen) kaisen-packages; urgency=medium
 
   * Import Debian patches and fixs
