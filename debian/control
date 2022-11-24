@@ -37,8 +37,8 @@ Build-Depends: debhelper-compat (= 13),
 Build-Conflicts: autoconf2.13, libzfs-dev, libnvpair-dev
 Standards-Version: 3.9.6
 Homepage: https://www.gnu.org/software/grub/
-Vcs-Git: https://gitlab.com/kaisenlinux/packages/grub.git
-Vcs-Browser: https://gitlab.com/kaisenlinux/packages/grub
+Vcs-Git: https://gitlab.com/kaisenlinux/packages/grub2.git
+Vcs-Browser: https://gitlab.com/kaisenlinux/packages/grub2
 Rules-Requires-Root: no
 
 Package: grub2
@@ -420,7 +420,7 @@ Description: GRand Unified Bootloader, version 2 (IA64 version)
 
 Package: grub-efi-arm-bin
 Architecture: any-arm
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
 Recommends: efibootmgr [linux-any]
 Multi-Arch: foreign
 XB-Efi-Vendor: ${efi:Vendor}
@@ -528,7 +528,7 @@ Description: GRand Unified Bootloader, version 2 (ARM64 UEFI signing template)
 
 Package: grub-ieee1275-bin
 Architecture: any-i386 any-amd64 any-powerpc any-ppc64 any-ppc64el any-sparc any-sparc64
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
 Replaces: grub2 (<< ${source:Version}), grub-common (<= 1.97~beta2-1), grub-ieee1275 (<< 1.99-1)
 Suggests: genisoimage [any-powerpc any-ppc64 any-ppc64el]
 Multi-Arch: foreign

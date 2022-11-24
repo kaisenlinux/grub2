@@ -1,3 +1,19 @@
+grub2 (2.06-5kaisen) kaisen-packages; urgency=high
+
+  * Import the CVE fixs
+
+ -- Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>  Thu, 24 Nov 2022 00:01:54 +0100
+
+grub2 (2.06-5) unstable; urgency=high
+
+  [ Steve McIntyre ]
+  * Explicitly unset SOURCE_DATE_EPOCH before running fs tests
+  * Pull in upstream patches to harden font and image handling -
+    CVE-2022-2601, CVE-2022-3775.
+  * Bump SBAT level to 3 for grub-efi packages
+
+ -- Steve McIntyre <93sam@debian.org>  Sun, 13 Nov 2022 00:33:35 +0000
+
 grub2 (2.06-4.1kaisen) kaisen-packages; urgency=medium
 
   * Remove the deactivation of os-prober in the /etc/default/grub
