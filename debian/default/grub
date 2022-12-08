@@ -11,7 +11,7 @@ GRUB_CMDLINE_LINUX=""
 
 # Uncomment this to run os-prober to search for and add other OS
 # installations to the grub boot menu
-GRUB_DISABLE_OS_PROBER=false
+#GRUB_DISABLE_OS_PROBER=false
 
 # Uncomment to enable BadRAM filtering, modify to suit your needs
 # This works with Linux (no patch required) and with any kernel that obtains

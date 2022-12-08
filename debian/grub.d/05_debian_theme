@@ -182,12 +182,12 @@ case $GRUB_DISTRIBUTOR in
 	Ubuntu|Kubuntu)
 		;;
 	Tanglu)
-		if set_background_image "/boot/grub/grub-16x9.png"; then
+		if set_background_image "/usr/share/images/grub/grub.png"; then
 			exit 0
 		fi
 		;;
 	*)
-		if set_background_image "/boot/grub/grub-16x9.png"; then
+		if set_background_image "/usr/share/images/desktop-base/desktop-grub.png"; then
 			exit 0
 		fi
 		;;
