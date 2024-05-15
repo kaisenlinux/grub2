@@ -65,7 +65,7 @@ Description: GRand Unified Bootloader, version 2 (dummy package)
 Package: grub-efi
 Architecture: any-i386 any-amd64 any-arm64 any-ia64 any-arm any-riscv64
 Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}, grub-efi-ia32 (= ${binary:Version}) [any-i386], grub-efi-amd64 (= ${binary:Version}) [any-amd64], grub-efi-arm64 (= ${binary:Version}) [any-arm64], grub-efi-ia64 (= ${binary:Version}) [any-ia64], grub-efi-arm (= ${binary:Version}) [any-arm], grub-efi-riscv64 (= ${binary:Version}) [any-riscv64]
+Depends: ${misc:Depends}, grub-efi-ia32 (= ${binary:Version}) [any-i386], grub-efi-amd64 (= ${binary:Version}) [any-amd64], grub-efi-arm64 (= ${binary:Version}) [any-arm64], grub-efi-ia64 (= ${binary:Version}) [any-ia64], grub-efi-arm (= ${binary:Version}) [any-arm], grub-efi-riscv64 (= ${binary:Version}) [any-riscv64], kaisen-grub-configuration
 Multi-Arch: foreign
 Description: GRand Unified Bootloader, version 2 (dummy package)
  This is a dummy package that depends on the grub-efi-$ARCH package most likely
@@ -126,7 +126,7 @@ Description: GRand Unified Bootloader, version 2 (emulated debug files)
 
 Package: grub-pc-bin
 Architecture: any-i386 any-amd64
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
 Replaces: grub2 (<< ${source:Version}), grub-common (<= 1.97~beta2-1), grub-pc (<< 1.99-1)
 Suggests: desktop-base (>= 4.0.6)
 Multi-Arch: foreign
@@ -162,7 +162,7 @@ Description: GRand Unified Bootloader, version 2 (PC/BIOS debug files)
 Package: grub-pc
 Architecture: any-i386 any-amd64
 Pre-Depends: ${misc:Pre-Depends}
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub2-common (= ${binary:Version}), grub-pc-bin (= ${binary:Version}), ucf, freebsd-utils (>= 8.0-4) [kfreebsd-any], ${gfxpayload-depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub2-common (= ${binary:Version}), grub-pc-bin (= ${binary:Version}), ucf, freebsd-utils (>= 8.0-4) [kfreebsd-any], ${gfxpayload-depends}, kaisen-grub-configuration
 Replaces: grub, grub-legacy, grub2 (<< ${source:Version}), grub-common (<= 1.97~beta2-1), grub-efi-amd64, grub-efi-ia32, grub-coreboot, grub-ieee1275
 Conflicts: grub (<< 0.97-54), grub-legacy, grub-efi-amd64, grub-efi-ia32, grub-coreboot, grub-ieee1275, grub-xen
 Multi-Arch: foreign
@@ -250,7 +250,7 @@ Description: GRand Unified Bootloader, version 2 (Coreboot version)
 
 Package: grub-efi-ia32-bin
 Architecture: any-i386 any-amd64
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
 Breaks: grub-efi-ia32-signed (<< 1+2.12~rc1)
 Recommends: grub-efi-ia32-signed [i386], efibootmgr [linux-any]
 Replaces: grub2 (<< ${source:Version}), grub-common (<= 1.97~beta2-1), grub-efi, grub-efi-ia32 (<< 1.99-1)
@@ -313,7 +313,7 @@ Description: GRand Unified Bootloader, version 2 (EFI-IA32 signing template)
 
 Package: grub-efi-amd64-bin
 Architecture: i386 kopensolaris-i386 any-amd64
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
 Recommends: grub-efi-amd64-signed [amd64], efibootmgr [linux-any]
 Replaces: grub2 (<< ${source:Version}), grub-common (<= 1.97~beta2-1), grub-efi-amd64 (<< 1.99-1)
 Breaks: grub-efi-amd64-signed (<< 1+2.12~rc1)
@@ -348,7 +348,7 @@ Description: GRand Unified Bootloader, version 2 (EFI-AMD64 debug files)
 Package: grub-efi-amd64
 Architecture: i386 kopensolaris-i386 any-amd64
 Pre-Depends: ${misc:Pre-Depends}
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub2-common (= ${binary:Version}), grub-efi-amd64-bin (= ${binary:Version}), ucf
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub2-common (= ${binary:Version}), grub-efi-amd64-bin (= ${binary:Version}), ucf, kaisen-grub-configuration
 Replaces: grub, grub-legacy, grub2 (<< ${source:Version}), grub-common (<= 1.97~beta2-1), grub-pc, grub-efi-ia32, grub-coreboot, grub-ieee1275
 Conflicts: grub, grub-legacy, grub-efi-ia32, grub-pc, grub-coreboot, grub-ieee1275, grub-xen, elilo
 Multi-Arch: foreign
@@ -376,7 +376,7 @@ Description: GRand Unified Bootloader, version 2 (EFI-AMD64 signing template)
 
 Package: grub-efi-ia64-bin
 Architecture: any-ia64
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
 Multi-Arch: foreign
 XB-Efi-Vendor: ${efi:Vendor}
 Description: GRand Unified Bootloader, version 2 (IA64 modules)
@@ -425,7 +425,7 @@ Description: GRand Unified Bootloader, version 2 (IA64 version)
 
 Package: grub-efi-arm-bin
 Architecture: any-arm
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
 Recommends: efibootmgr [linux-any]
 Multi-Arch: foreign
 XB-Efi-Vendor: ${efi:Vendor}
@@ -476,7 +476,7 @@ Description: GRand Unified Bootloader, version 2 (ARM UEFI version)
 
 Package: grub-efi-arm64-bin
 Architecture: any-arm64
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
 Breaks: grub-efi-arm64-signed (<< 1+2.12~rc1)
 Recommends: grub-efi-arm64-signed [arm64], efibootmgr [linux-any]
 Multi-Arch: foreign
@@ -509,7 +509,7 @@ Description: GRand Unified Bootloader, version 2 (ARM64 UEFI debug files)
 Package: grub-efi-arm64
 Architecture: any-arm64
 Pre-Depends: ${misc:Pre-Depends}
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub2-common (= ${binary:Version}), grub-efi-arm64-bin (= ${binary:Version}), ucf
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub2-common (= ${binary:Version}), grub-efi-arm64-bin (= ${binary:Version}), ucf, kaisen-grub-configuration
 Multi-Arch: foreign
 Description: GRand Unified Bootloader, version 2 (ARM64 UEFI version)
  GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
@@ -534,7 +534,7 @@ Description: GRand Unified Bootloader, version 2 (ARM64 UEFI signing template)
 
 Package: grub-efi-riscv64-bin
 Architecture: any-riscv64
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (>= 2.02~beta2-9), kaisen-grub-configuration
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (>= 2.02~beta2-9)
 Recommends: efibootmgr [linux-any]
 Multi-Arch: foreign
 XB-Efi-Vendor: ${efi:Vendor}
@@ -584,7 +584,7 @@ Description: GRand Unified Bootloader, version 2 (riscv64 UEFI version)
 
 Package: grub-ieee1275-bin
 Architecture: any-i386 any-amd64 any-powerpc any-ppc64 any-ppc64el any-sparc any-sparc64
-Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version}), kaisen-grub-configuration
+Depends: ${shlibs:Depends}, ${misc:Depends}, grub-common (= ${binary:Version})
 Replaces: grub2 (<< ${source:Version}), grub-common (<= 1.97~beta2-1), grub-ieee1275 (<< 1.99-1)
 Suggests: genisoimage [any-powerpc any-ppc64 any-ppc64el]
 Multi-Arch: foreign
